@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="rviz" pkg="rviz" type="rviz" respawn="true" 
+        args="-d $(find perception)/launch/rviz/perception.rviz"/>
+  
+</launch>

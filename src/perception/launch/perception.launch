@@ -1,0 +1,32 @@
+<launch>
+  <!-- D455 Camera Startup  -->
+  <node pkg="vision" type="camera_init.py" name="camera_init" output="screen" />
+  
+  <!-- Orientation Prediction -->
+  <node pkg="perception" type="perception_node" name="perception_node" output="screen"/>
+
+  <!-- Targets Positioning -->
+  <node name="vision_detect_node" pkg="vision" type="vision_detect_node" output="screen">
+    <param name="model_path" value="/home/ii/Documents/RLTP/src/vision/model/best2.engine" />
+    <param name="fx" value="386.128" />
+    <param name="fy" value="385.284" />
+    <param name="cx" value="322.663" />
+    <param name="cy" value="242.466" />
+
+    <param name="conf_thresh" value="0.7" />
+    <param name="nms_iou_thresh" value="0.45" />
+
+    <param name="input_w" value="640" />
+    <param name="input_h" value="640" />
+  </node>
+
+  <!-- TF Tree -->
+  <node pkg="tf" type="static_transform_publisher" name="lidar_to_camera" 
+        args="0.05 0.0 -0.03 0.5 0.5 0.5 0.5 /body /camera_init 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_to_lidar" 
+          args="0.0 0.0 0.4 1.0 0.0 0.0 0.0 /body /base_link 100" />
+
+  <!-- <node name="rviz" pkg="rviz" type="rviz" 
+        args="-d $(find perception)/launch/rviz/perception.rviz"/> -->
+  
+</launch>

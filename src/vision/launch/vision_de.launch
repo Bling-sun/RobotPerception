@@ -1,0 +1,23 @@
+<launch>
+  <node pkg="vision" type="camera_init.py" name="camera_init" output="screen" />
+  
+  <node name="vision_detect_node" pkg="vision" type="vision_detect_node" output="screen">
+    <!-- engine path -->
+    <param name="model_path" value="/home/ii/Documents/MEDP/src/vision/model/best.engine" />
+    <!-- camera intrinsics -->
+    <param name="fx" value="386.128" />
+    <param name="fy" value="385.284" />
+    <param name="cx" value="322.663" />
+    <param name="cy" value="242.466" />
+
+    <!-- thresholds -->
+    <param name="conf_thresh" value="0.85" />
+    <param name="nms_iou_thresh" value="0.45" />
+
+    <!-- input size -->
+    <param name="input_w" value="640" />
+    <param name="input_h" value="640" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find vision)/launch/rviz/vision_de.rviz"/>
+</launch>

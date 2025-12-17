@@ -1,0 +1,13 @@
+session_name: RLTP
+windows:
+  - window_name: RLTP
+    layout: tiled
+    shell_command_before:
+      - source devel/setup.bash
+    panes:
+      - shell_command:
+          - roslaunch perception perception.launch 
+      - shell_command:
+          - sleep 3
+          - roslaunch perception rviz.launch 
+
