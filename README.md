@@ -1,3 +1,7 @@
+# RobotPerception
+
+ROS-based object detection, localization, and orientation estimation for RoboMaster robots.
+
 ## 📜 Introduction
 
 Object detection and orientation prediction for RoboMaster robots.(Click the image to view the video)
@@ -17,11 +21,13 @@ Object detection and orientation prediction for RoboMaster robots.(Click the ima
 
 #### Clone our repository and build
 ```bash
-git clone https://github.com/Bling-sun/RLTP.git
-cd RLTP
+git clone https://github.com/Bling-sun/RobotPerception.git
+cd RobotPerception
 catkin_make --only-pkg-with-deps obj_state_msgs
 catkin_make -DCATKIN_WHITELIST_PACKAGES=""
 ```
+The existing ROS package names, `RLTP_start.yaml`, and tmux session name `RLTP` are retained for compatibility. Before launching, set the model path and camera calibration in `src/perception/launch/perception.launch` for your machine.
+
 #### Configure tmux
 *This procedure is optional*: You can choose to launch all the ros nodes in `RLTP_start.yaml` one by one.
 
